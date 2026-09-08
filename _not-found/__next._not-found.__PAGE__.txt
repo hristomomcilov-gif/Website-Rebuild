@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[22016,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js","/Website-Rebuild/_next/static/chunks/22i43cg4l4-dq.js"],""]
+3:I[97367,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+8:I[97367,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js"],"ViewportBoundary"]
+9:I[97367,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js"],"MetadataBoundary"]
+b:I[39756,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js"],"default"]
+c:I[37457,["/Website-Rebuild/_next/static/chunks/3fntmmi971322.js"],"default"]
+:HL["/Website-Rebuild/_next/static/chunks/42s-fg8plrhuy.css","style"]
+7:X
+e:X
+e:C
+0:{"buildId":"BS2_xy77UCKbtEMWmgMis","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"mx-auto flex min-h-dvh w-full max-w-2xl flex-col items-start justify-center gap-4 px-4 py-16","children":[["$","p",null,{"className":"text-xs font-semibold uppercase tracking-[0.14em] text-brand-soft","children":"404"}],["$","h1",null,{"className":"text-3xl font-semibold tracking-tight","children":"This page is not available."}],["$","p",null,{"className":"text-ink-muted","children":"The page you requested does not exist in this build."}],["$","$L2",null,{"href":"/","className":"min-h-11 text-brand-soft underline-offset-4 hover:underline","children":"Return to the homepage"}]]}],[["$","script","script-0",{"src":"/Website-Rebuild/_next/static/chunks/22i43cg4l4-dq.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#0b1631"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Teamulate | A Full Marketing Department Without Building One"}],["$","meta","1",{"name":"description","content":"Teamulate operates a managed AI marketing department inside the tools your B2B company already uses — with specialized workflows, visible approvals and human oversight."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@a","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}]}]]}],"isPartial":"$@d","staleTime":"$7","varyParams":"$e"},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Website-Rebuild/_next/static/chunks/42s-fg8plrhuy.css","precedence":"next"}],["$","script","script-0",{"src":"/Website-Rebuild/_next/static/chunks/3fntmmi971322.js","async":true}]],["$","html",null,{"lang":"en-CA","className":"inter_7b064e0d-module__MOT0tq__variable h-full antialiased","children":["$","body",null,{"className":"flex min-h-full flex-col","children":["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}],"notFound":[["$","main",null,{"className":"mx-auto flex min-h-dvh w-full max-w-2xl flex-col items-start justify-center gap-4 px-4 py-16","children":[["$","p",null,{"className":"text-xs font-semibold uppercase tracking-[0.14em] text-brand-soft","children":"404"}],["$","h1",null,{"className":"text-3xl font-semibold tracking-tight","children":"This page is not available."}],["$","p",null,{"className":"text-ink-muted","children":"The page you requested does not exist in this build."}],["$","$L2",null,{"href":"/","className":"min-h-11 text-brand-soft underline-offset-4 hover:underline","children":"Return to the homepage"}]]}],[]]}]}]}]]}],"isPartial":"$@f","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@10","rootVaryParams":null,"needsRuntimeRequest":"$@11"}
+5:null
+7:300
+11:true
+7:C
+10:0
+a:"$undefined"
+d:"$undefined"
+f:"$undefined"
+6:"$undefined"

@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/*
+  Brand tokens mirror the `--tm-*` custom properties served by the live site
+  (teamulate.ca, inspected 2026-09-08). Dark navy is the existing brand surface
+  used for the live site's closing CTA band and is used here as the calm
+  "operating system" base requested by the Wireframe & Motion Map.
+*/
+:root {
+  --tm-navy-950: #0b1631;
+  --tm-navy-900: #10213f;
+  --tm-navy-800: #172b52;
+  --tm-navy-700: #223a68;
+  --tm-blue-600: #3b6ef5;
+  --tm-violet-600: #5b47f0;
+  --tm-violet-400: #8f82f5;
+  --tm-purple-600: #6437f5;
+  --tm-cyan-600: #19a9b8;
+  --tm-cyan-400: #4fd0dc;
+  --tm-green-600: #2da65a;
+  --tm-green-400: #5ccf85;
+  --tm-orange-500: #f49a16;
+  --tm-orange-300: #f9c56d;
+  --tm-pink-500: #e3459b;
+  --tm-red-600: #dc2626;
+  --tm-lavender-100: #eceafa;
+  --tm-border: #dbe3f0;
+  --tm-surface: #ffffff;
+  --tm-surface-muted: #f5f7fc;
+  --tm-text: #0b1631;
+  --tm-text-muted: #64748b;
+  --tm-radius-sm: 8px;
+  --tm-radius-md: 14px;
+  --tm-radius-lg: 22px;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-canvas: var(--tm-navy-950);
+  --color-panel: var(--tm-navy-900);
+  --color-panel-2: var(--tm-navy-800);
+  --color-panel-3: var(--tm-navy-700);
+  --color-ink: #ffffff;
+  --color-ink-muted: #b4bfd6;
+  --color-ink-faint: #8391ad;
+  --color-line: rgba(255, 255, 255, 0.14);
+  --color-line-strong: rgba(255, 255, 255, 0.28);
+  --color-brand: var(--tm-violet-600);
+  --color-brand-hover: #4a38d8;
+  --color-brand-soft: var(--tm-violet-400);
+  --color-measure: var(--tm-cyan-400);
+  --color-measure-deep: var(--tm-cyan-600);
+  --color-ready: var(--tm-green-400);
+  --color-approval: var(--tm-orange-300);
+  --color-approval-deep: var(--tm-orange-500);
+  --color-light: var(--tm-surface);
+  --color-light-muted: var(--tm-surface-muted);
+  --color-light-ink: var(--tm-text);
+  --color-light-ink-muted: var(--tm-text-muted);
+  --color-light-line: var(--tm-border);
+
+  --radius-sm: var(--tm-radius-sm);
+  --radius-md: var(--tm-radius-md);
+  --radius-lg: var(--tm-radius-lg);
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --animate-rise: rise 240ms var(--ease-standard) both;
+  --animate-fade: fade 180ms var(--ease-standard) both;
+  --animate-node-in: node-in 450ms var(--ease-standard) both;
+  --animate-handoff: handoff 900ms var(--ease-standard) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes node-in {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes handoff {
+    from {
+      stroke-dashoffset: 240;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-soft);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Animated once; never loops. */
+.tm-handoff {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+}
+.motion-safe\:tm-handoff-run {
+  animation: var(--animate-handoff);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tm-handoff {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tm-node {
+  transform-box: fill-box;
+  transform-origin: center;
+}

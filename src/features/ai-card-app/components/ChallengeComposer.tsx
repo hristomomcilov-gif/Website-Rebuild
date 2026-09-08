@@ -40,16 +40,17 @@ export function ChallengeComposer({ selected, description, onSelect, onDescripti
           </button>
         ) : null}
       </div>
-      <div className="flex flex-wrap gap-2" role="group" aria-labelledby={headingId}>
-        {COMPOSER.chips.map((chip) => {
+      <div className={compact ? "grid grid-cols-2 gap-1.5" : "flex flex-wrap gap-2"} role="group" aria-labelledby={headingId}>
+        {COMPOSER.chips.map((chip, i) => {
           const pressed = selected === chip.value;
+          const span = compact && i === COMPOSER.chips.length - 1 ? "col-span-2" : "";
           return (
             <button
               key={chip.value}
               type="button"
               aria-pressed={pressed}
               onClick={() => onSelect(chip.value)}
-              className={`rounded-full border font-medium transition-colors duration-150 ${compact ? "min-h-10 px-3 text-[13px]" : "min-h-11 px-4 text-sm"} ${
+              className={`rounded-full border font-medium transition-colors duration-150 ${compact ? "min-h-10 px-3 text-[13px] leading-tight" : "min-h-11 px-4 text-sm"} ${span} ${
                 pressed
                   ? "border-brand-soft bg-brand text-white"
                   : "border-line-strong bg-panel/70 text-ink hover:border-white hover:bg-white/5"

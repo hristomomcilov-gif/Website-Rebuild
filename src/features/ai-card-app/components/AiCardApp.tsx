@@ -95,7 +95,7 @@ export function AiCardApp({ initialState }: { initialState?: AppState } = {}) {
           <div className="flex items-center gap-2">
             <span className="hidden text-xs text-ink-muted md:inline">{AT_REST.trustLine}</span>
             {atRest ? (
-              <StatusLabel tone="brand" className="md:hidden">{AT_REST.guidedSample}</StatusLabel>
+              <StatusLabel tone="brand" className="hidden whitespace-nowrap px-2 text-[11px] min-[360px]:inline-flex md:hidden">{AT_REST.guidedSample}</StatusLabel>
             ) : (
               <Button variant="ghost" className="min-h-9 whitespace-nowrap text-sm" onClick={() => setConfirmRestart(true)}>
                 {HANDOFF_STRIP.restart}

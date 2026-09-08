@@ -9,6 +9,15 @@ import { useEffect, useRef, type ReactNode } from "react";
 export function ModalDialog({ labelledBy, describedBy, onClose, children, wide = false }: { labelledBy: string; describedBy?: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
   const ref = useRef<HTMLDialogElement>(null);
 
+  // Return focus to the invoking control when the dialog unmounts. Browsers
+  // only do this reliably for `close()`, not for removal from the DOM.
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    return () => {
+      if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus();
+    };
+  }, []);
+
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;

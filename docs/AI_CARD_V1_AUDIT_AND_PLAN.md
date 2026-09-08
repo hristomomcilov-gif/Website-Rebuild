@@ -155,6 +155,8 @@ npm run screenshots    # regenerates docs/qa/screenshots (needs Chrome)
 ### Host a preview (needs D-05)
 Upload `out/` to any static host under a non-indexed path (`/preview/…` or `/stg/…` are already disallowed in live `robots.txt`). No server, env or secrets required at runtime.
 
+**GitHub Pages preview (added on request):** `.github/workflows/preview-pages.yml` builds the flagged export with `NEXT_PUBLIC_BASE_PATH=/Website-Rebuild` and commits it to the `gh-pages` branch on every push to this branch. The default `GITHUB_TOKEN` cannot create a Pages site, so a repository admin must enable it **once**: Settings → Pages → Build and deployment → Source "Deploy from a branch" → `gh-pages` / `/ (root)`. The preview is then served at `https://hristomomcilov-gif.github.io/Website-Rebuild/ai-card/` (noindex, not the live site).
+
 ### Rollback
 - Feature: `git revert 69ecb0f a339360` — or delete `src/features/ai-card`, `src/app/ai-card`, `src/lib/featureFlags.ts` and the CTA branch in `src/app/page.tsx`.
 - Exposure only: rebuild without `NEXT_PUBLIC_AI_CARD_PREVIEW`.

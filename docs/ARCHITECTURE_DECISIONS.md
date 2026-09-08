@@ -143,6 +143,17 @@ Only two generic primitives live outside (`src/components/ui/*`, `src/lib/featur
 
 ---
 
+## ADR-014 — Experience Reset v2: app-first module beside the frozen wizard
+
+**Status:** Accepted (preview)
+**Context:** Chris's Reset v2 replaces the form-first topology. Reset §10 requires the wizard to stay as a rollback baseline and the new experience to be previewed independently.
+**Decision:** A second isolated module `src/features/ai-card-app/` and route `/ai-card-app/` under the same build-time flag. It imports v1 fixtures, agents, sheets, card components and the SVG map; nothing in `src/features/ai-card/` was modified. The linear reducer is replaced by a stage model with overlays (`appStateMachine.ts`); path resolution accepts partial answers (`resolveBasePath.ts`) and is asserted to agree with the v1 resolver whenever all routing answers exist.
+**Alternatives:** Refactor the v1 module in place (breaks the rollback requirement); a runtime toggle between the two experiences on one route (mixes bundles, harder to review).
+**Consequences:** Two preview routes until Chris chooses (D-13, D-15); some duplicated shell code that disappears when one is retired.
+**Reversal:** Delete the module, the route and the e2e spec; repoint the hero CTA.
+
+---
+
 ## Deferred (not decided here — Brief §13)
 
 Live AI chat, voice, URL analysis, crawling/enrichment, lead scoring, accounts/shareable cards, HubSpot handoff, authenticated client mode, agent email identities, client integrations, 3D/game engine. None of these has a stub, hook or placeholder in the code.

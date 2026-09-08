@@ -4,6 +4,8 @@
 **Branch:** `cursor/ai-card-v1-preview-3cc6`
 **Gate reached:** Gate A complete; Gate B built as a **preview-only vertical slice** (not deployed, not linked from any live surface); Gate C partially evidenced (screenshot matrix, automated checks). Gate D (live release) **not started** — requires Chris's explicit approval.
 
+> **Update — Experience Reset v2 (same day).** Chris's reset brief replaced the form-first interaction model. An **app-first** preview now lives at `/ai-card-app/` beside the frozen v1 wizard at `/ai-card/`. Full report: `AI_CARD_V2_RESET_REPORT.md`. The tables below describe the v1 slice; the reset acceptance criteria are tracked in §2b.
+
 > Authorisation note. The Implementation Brief authorises Gate A only by default. The instruction received for this run was to execute the project, which was interpreted as: complete Gate A **and** build the Gate B preview slice so Chris can review a working artefact instead of a plan. Nothing live was touched; every Gate B item remains behind a build-time flag and is reversible in one commit. If this reading is wrong, the Gate B commits (`a339360`, `69ecb0f`) can be reverted and the audit documents stand on their own.
 
 ---
@@ -67,6 +69,28 @@
 | Preview route, changed files, limitations, analytics impact, rollback documented | Done | `AI_CARD_V1_AUDIT_AND_PLAN.md` |
 | `IMPLEMENTATION_STATUS.md` updated | Done | this file |
 
+## 2b. Experience Reset v2 — acceptance criteria (Reset §11)
+
+| Criterion | Status | Evidence |
+|---|---|---|
+| First load shows active canvas, Strategos, department map, problem composer and operating-map rail | Done | `app-first/desktop-1440-rest.png`, `mobile-390-rest.png`; component test "shows the shell…" |
+| No separate `Build my AI Card` start screen | Done | asserted in component + e2e tests |
+| No `1 of 5` progress leads the interaction | Done | asserted; no radios rendered |
+| One challenge gives a visible, useful response immediately | Done | hypothesis + activation + Card 1 (`*-after.png`) |
+| Five cards explorable before more context | Done | e2e "cards open in any order" |
+| Context questions optional, with reason | Done | `Refinement.tsx`; `Why it matters` asserted |
+| Map is the primary navigation/proof surface | Done | roles clickable from map rail; cards subordinate |
+| Premium application look, not a form | Built — **Chris's judgement pending (D-10)** | screenshots |
+| Motion has static/reduced equivalent; no false live status | Done | `mobile-390-reduced-motion-after.png`; at-rest label set restricted to Reset §5 |
+| Mobile keeps product meaning, no survey | Done | fixed-safe bottom composer; vertical rail |
+| 320/390/768/1024/1440 + 200 % | Done | matrix in `app-first/` |
+| Keyboard: select, explore, change, sheets | Done | e2e "keyboard" test |
+| No live model/voice/crawl/URL/CRM/analytics/external action | Done | e2e zero cross-origin requests |
+| Fixture-based, bounded by `Guided sample` / `No private systems connected` | Done | shell + context rail |
+| No fake activity/metrics/status | Done | content tests + label set |
+| Optional text session-only, not sent anywhere | Done | `appSession.ts`; test |
+| Review package | Done | `AI_CARD_V2_RESET_REPORT.md` §4 |
+
 ## 3. Gate C — QA hardening
 
 | Item | Status |
@@ -82,10 +106,10 @@
 ```
 npm run lint        → 0 errors, 0 warnings
 npm run typecheck   → 0 errors
-npm run test        → 5 files, 50 tests passed (Vitest 5, jsdom)
-npm run build:preview → static export: /, /ai-card/, /_not-found
-npm run build       → static export without the flag: /ai-card/ absent (renders 404)
-npm run screenshots → 25 Playwright tests passed; 42 PNGs written to docs/qa/screenshots/
+npm run test        → 8 files, 73 tests passed (Vitest 5, jsdom)
+npm run build:preview → static export: /, /ai-card/, /ai-card-app/, /_not-found
+npm run build       → static export without the flag: both AI Card routes absent (render 404)
+npm run screenshots → 38 Playwright tests passed; 42 + 25 PNGs under docs/qa/screenshots/
 ```
 
 ## 5. What is *not* implemented (by design)
@@ -98,13 +122,14 @@ npm run screenshots → 25 Playwright tests passed; 42 PNGs written to docs/qa/s
 
 ## 6. Rollback
 
+- Reset only: delete `src/features/ai-card-app`, `src/app/ai-card-app`, `e2e/app-first.spec.ts`, `docs/qa/screenshots/app-first` and point the hero CTA back to `/ai-card/`.
 - Whole feature: `git revert 69ecb0f a339360` (route + feature), or delete `src/features/ai-card`, `src/app/ai-card`, `src/lib/featureFlags.ts` and the CTA branch in `src/app/page.tsx`.
 - Preview-only exposure: build without `NEXT_PUBLIC_AI_CARD_PREVIEW` — the route and CTA disappear from the output.
 - No data, schema, vendor or third-party configuration to unwind.
 
 ## 7. Next safest batch (proposed)
 
-1. Chris reviews the screenshots and the running preview (`npm ci && npm run build:preview && npm run serve:out`).
-2. Decisions D-01…D-08 in `AI_CARD_V1_AUDIT_AND_PLAN.md` §11.
+1. Chris reviews the app-first first interaction (`AI_CARD_V2_RESET_REPORT.md` §4) and answers D-10 (Reset §13).
+2. Decisions D-01…D-08 in `AI_CARD_V1_AUDIT_AND_PLAN.md` §11 and D-10…D-15 in the reset report.
 3. Host the static `out/` on a non-indexed preview path; run Lighthouse and a manual assistive-technology pass; record results here.
 4. Only then: port into (or merge with) the live site codebase and plan Gate D.

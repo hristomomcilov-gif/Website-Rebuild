@@ -43,7 +43,8 @@ Source: `https://teamulate.ca/sitemap.xml`, homepage links, and HTTP probes on 2
 | Route | Rendering | Flag | Indexing | Notes |
 |---|---|---|---|---|
 | `/` | Static export | — | `noindex, nofollow` (site-wide in `layout.tsx`) | Preview homepage: hero (W00) only. With the flag **on**, primary CTA "Build my AI Card" → `/ai-card/`, secondary "See the team in action" → live `/team/`. With the flag **off**, only "See the team in action" is rendered |
-| `/ai-card/` | Static export; entry copy server-rendered, interaction client-side | `NEXT_PUBLIC_AI_CARD_PREVIEW=true` | `noindex, nofollow`; not in any sitemap (no sitemap is generated) | The AI Card v1 guided sample. With the flag off the route renders the 404 page |
+| `/ai-card/` | Static export; entry copy server-rendered, interaction client-side | `NEXT_PUBLIC_AI_CARD_PREVIEW=true` | `noindex, nofollow`; not in any sitemap (no sitemap is generated) | The AI Card **v1 wizard** — frozen as the rollback baseline after Experience Reset v2. With the flag off the route renders the 404 page |
+| `/ai-card-app/` | Static export; shell, Strategos, map, composer and rail server-rendered, interaction client-side | `NEXT_PUBLIC_AI_CARD_PREVIEW=true` | `noindex, nofollow`; no sitemap | The **app-first AI Card** (Experience Reset v2). Preview route name only — see `AI_CARD_V2_RESET_REPORT.md` D-13. Homepage preview CTA points here |
 | `/_not-found` (`404.html`) | Static | — | — | Neutral copy |
 
 No sitemap, `robots.txt`, redirects, navigation component or additional pages exist in the rebuild yet.
@@ -60,6 +61,7 @@ Defined once in `src/features/ai-card/content/copy.ts` (`DESTINATIONS`). All are
 | Live operating review | `https://teamulate.ca/request-demo/` | W13 "Request a live operating review" (link only; no form in the Card) |
 | Meet the full department | `https://teamulate.ca/team/` | W12 secondary; homepage secondary CTA |
 | How it works | `https://teamulate.ca/how-it-works/` | Reserved in config; not yet linked |
+| Research | `https://teamulate.ca/research/marketing-team-cost-2026/` | App-first left rail "Research" (placeholder target, D-14) |
 
 ---
 

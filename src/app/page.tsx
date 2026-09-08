@@ -33,7 +33,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             {AI_CARD_PREVIEW_ENABLED ? (
               <>
-                <LinkButton href="/ai-card/">{HERO.primaryCta}</LinkButton>
+                <LinkButton href="/ai-card-app/">{HERO.primaryCta}</LinkButton>
                 <LinkButton href={DESTINATIONS.team} variant="secondary" external>
                   {HERO.secondaryCta}
                 </LinkButton>

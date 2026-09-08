@@ -3,6 +3,12 @@ name: Preview (GitHub Pages)
 # Publishes the preview-only static export so it can be reviewed on a phone.
 # This is NOT the live site: everything served here is noindex/nofollow and
 # the AI Card is only present because the preview flag is set at build time.
+#
+# The export is committed to the `gh-pages` branch. For a project repository
+# GitHub enables Pages from that branch automatically; the default GITHUB_TOKEN
+# is not allowed to create a Pages site through the REST API, so the
+# artifact-based deploy (actions/deploy-pages) cannot be used until an admin
+# enables Pages once in Settings → Pages.
 
 on:
   push:
@@ -11,16 +17,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages-preview
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,20 +39,12 @@ jobs:
         env:
           NEXT_PUBLIC_AI_CARD_PREVIEW: "true"
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-      - run: touch out/.nojekyll
-      - uses: actions/configure-pages@v5
+      - name: Publish out/ to the gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          enable_jekyll: false
+          force_orphan: true
+          commit_message: "Preview export from ${{ github.sha }}"
